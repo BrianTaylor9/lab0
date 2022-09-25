@@ -5,9 +5,9 @@
 #include <linux/sched.h>
 #include <linux/init.h> 
 
-proc_dir_entry* proc_count_file;
+struct proc_dir_entry* proc_count_file;
 
-static int proc_count_show(int count, seq_file* f) {
+static int proc_count_show(int count, struct seq_file* f) {
 	seq_printf(f, count);
 	return 0;
 }
