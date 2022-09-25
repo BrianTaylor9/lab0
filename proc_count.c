@@ -4,6 +4,8 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 
+proc_dir_entry* proc_count_file;
+
 static int proc_count_show(int count, seq_file* f) {
 	seq_printf(f, count);
 	return 0;
@@ -17,12 +19,13 @@ static int __init proc_count_init(void)
 	for_each_process(t) {
 		count++;
 	}
-	proc_create_single("count", 0444, NULL, proc_count_show);
+	proc_count_file = proc_create_single("count", 0444, NULL, proc_count_show);
 	return 0;
 }
 
 static void __exit proc_count_exit(void)
 {
+	proc_remove(proc_count_file);
 	pr_info("proc_count: exit\n");
 }
 
