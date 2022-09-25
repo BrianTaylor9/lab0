@@ -6,6 +6,7 @@
 
 static int proc_count_show(int count, seq_file* f) {
 	seq_printf(f, count);
+	return 0;
 }
 
 static int __init proc_count_init(void)
