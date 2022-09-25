@@ -4,9 +4,19 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 
+static int proc_count_show(int count, seq_file* f) {
+	seq_printf(f, count);
+}
+
 static int __init proc_count_init(void)
 {
 	pr_info("proc_count: init\n");
+	struct task_struct* t;
+	int count = 0;
+	for_each_process(t) {
+		count++;
+	}
+	proc_create_single("count", 0444, NULL, proc_count_show);
 	return 0;
 }
 
