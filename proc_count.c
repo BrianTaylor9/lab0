@@ -9,6 +9,7 @@ struct proc_dir_entry* proc_count_file;
 
 static int proc_count_show(struct seq_file* f, void* v) {
 	int count = 0;
+	struct task_struct* t;
 	for_each_process(t) {
 		count++;
 	}
@@ -19,7 +20,6 @@ static int proc_count_show(struct seq_file* f, void* v) {
 static int __init proc_count_init(void)
 {
 	pr_info("proc_count: init\n");
-	struct task_struct* t;
 	proc_count_file = proc_create_single("count", 0444, NULL, proc_count_show);
 	return 0;
 }
