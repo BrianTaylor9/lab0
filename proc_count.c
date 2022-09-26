@@ -9,11 +9,11 @@ struct proc_dir_entry* proc_count_file;
 
 static int proc_count_show(struct seq_file* f, void* v) {
 	int count = 0;
-	struct task_struct* t;
-	for_each_process(t) {
-		count++;
-	}
-	seq_printf(f, count);
+	// struct task_struct* t;
+	// for_each_process(t) {
+	// 	count++;
+	// }
+	seq_printf(f, "test");
 	return 0;
 }
 
