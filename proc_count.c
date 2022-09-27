@@ -13,7 +13,8 @@ static int proc_count_show(struct seq_file* f, void* v) {
 	for_each_process(t) {
 		count++;
 	}
-	seq_printf(f, "test");
+	seq_printf(f, count);
+	seq_printf(f, "\n");
 	return 0;
 }
 
