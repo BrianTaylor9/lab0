@@ -4,7 +4,6 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 #include <linux/init.h> 
-#include <stdio.h>
 
 struct proc_dir_entry* proc_count_file;
 
@@ -14,9 +13,8 @@ static int proc_count_show(struct seq_file* f, void* v) {
 	for_each_process(t) {
 		count++;
 	}
-	// int length = snprintf(NULL, 0, "%d", count);
-	// char* num = malloc(length + 1);
-	char* num = atoa(count);
+	char num[snprintf(NULL, 0, "%d", count) + 1];
+	sprintf(num, "%d", count);
 	seq_printf(f, num + "\n");
 	return 0;
 }
