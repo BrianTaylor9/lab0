@@ -9,10 +9,10 @@ struct proc_dir_entry* proc_count_file;
 
 static int proc_count_show(struct seq_file* f, void* v) {
 	int count = 0;
-	// struct task_struct* t;
-	// for_each_process(t) {
-	// 	count++;
-	// }
+	struct task_struct* t;
+	for_each_process(t) {
+		count++;
+	}
 	seq_printf(f, "test");
 	return 0;
 }
@@ -28,6 +28,7 @@ static void __exit proc_count_exit(void)
 {
 	proc_remove(proc_count_file);
 	pr_info("proc_count: exit\n");
+	return;
 }
 
 module_init(proc_count_init);
