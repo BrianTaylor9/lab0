@@ -16,7 +16,7 @@ static int proc_count_show(struct seq_file* f, void* v) {
 	char num[snprintf(NULL, 0, "%d", count) + 1];
 	sprintf(num, "%d", count);
 	seq_printf(f, num);
-	// seq_printf(f, "\n");
+	seq_printf(f, "\n");
 	return 0;
 }
 
